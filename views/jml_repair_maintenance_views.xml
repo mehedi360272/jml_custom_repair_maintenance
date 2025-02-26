@@ -40,6 +40,14 @@
                     <field name="status" widget="statusbar"/>
                 </header>
                 <sheet>
+                    <div name="button_box" position="inside">
+                        <button class="btn oe_stat_button btn-outline-secondary flex-grow-1 flex-lg-grow-0"
+                                type="object"
+                                name="action_view_picking"
+                                icon="fa-truck">
+                            <field string="Picking" name="internal_transfer_count" widget="statinfo"/>
+                        </button>
+                    </div>
                     <group>
                         <group>
                             <field name="name"/>
@@ -51,6 +59,12 @@
                             <field name="brand"/>
                         </group>
                     </group>
+                    <group>
+                        <group>
+                            <field name="request_by"/>
+                            <field name="department"/>
+                        </group>
+                    </group>
                     <notebook>
                         <page string="Details">
                             <group>
@@ -59,6 +73,7 @@
                                 </group>
                                 <group>
                                     <field name="location_from"/>
+                                    <field name="partner_id"/>
                                     <field name="location_to"/>
                                 </group>
                             </group>
@@ -70,7 +85,7 @@
     </record>
 
     <record model="ir.actions.act_window" id="jml_repair_maintenance_views_action">
-        <field name="name">Repair</field>
+        <field name="name">Create Repair</field>
         <field name="res_model">jml.repair.maintenance</field>
         <field name="view_mode">tree,form</field>
     </record>

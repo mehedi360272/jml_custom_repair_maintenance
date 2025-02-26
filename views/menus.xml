@@ -4,11 +4,55 @@
         <menuitem
                 id="root_menu_custom_repair_maintenance"
                 name="Repair Maintenance"/>
+
+        <!--        repair menu-->
         <menuitem
                 id="menu_jml_repair_maintenance"
                 name="Repair"
                 parent="root_menu_custom_repair_maintenance"
-                action="jml_repair_maintenance_views_action"
                 sequence="100"/>
+        <!--        Machine menu-->
+        <menuitem
+                id="menu_jml_machines"
+                name="Machines"
+                parent="root_menu_custom_repair_maintenance"
+                sequence="100"/>
+<!--        Machine sub menu-->
+        <menuitem
+                id="menu_machines"
+                name="Machines"
+                parent="menu_jml_machines"
+                action="stock.product_template_action_product"
+                sequence="110"/>
+        <menuitem
+                id="menu_machine_parts"
+                name="Machine Parts"
+                parent="menu_jml_machines"
+                action="stock.product_template_action_product"
+                sequence="110"/>
+        <!--        configuration menu-->
+        <menuitem
+                id="menu_jml_repair_maintenance_configuration"
+                name="Configuration"
+                parent="root_menu_custom_repair_maintenance"
+                sequence="200"/>
+
+
+        <!--        create repair menu-->
+        <menuitem
+                id="menu_create_repair"
+                name="Create Repair"
+                parent="menu_jml_repair_maintenance"
+                action="jml_repair_maintenance_views_action"
+                sequence="110"/>
+
+        <!--        service type menu-->
+        <menuitem
+                id="menu_service_type"
+                name="Service Type"
+                parent="menu_jml_repair_maintenance_configuration"
+                action="jml_repair_service_type_action"
+                sequence="110"/>
+
     </data>
 </odoo>

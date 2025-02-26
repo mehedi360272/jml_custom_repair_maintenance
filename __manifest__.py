@@ -23,6 +23,7 @@ Long description of module's purpose
     # always loaded
     'data': [
         'views/jml_repair_maintenance_views.xml',
+        'views/jml_service_type_view.xml',
         'views/menus.xml',
         'security/ir.model.access.csv',
     ],
