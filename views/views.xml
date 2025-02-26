@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="jml_custom_repair_maintenance.list">
+      <field name="name">jml_custom_repair_maintenance list</field>
+      <field name="model">jml_custom_repair_maintenance.jml_custom_repair_maintenance</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="jml_custom_repair_maintenance.action_window">
+      <field name="name">jml_custom_repair_maintenance window</field>
+      <field name="res_model">jml_custom_repair_maintenance.jml_custom_repair_maintenance</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="jml_custom_repair_maintenance.action_server">
+      <field name="name">jml_custom_repair_maintenance server</field>
+      <field name="model_id" ref="model_jml_custom_repair_maintenance_jml_custom_repair_maintenance"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="jml_custom_repair_maintenance" id="jml_custom_repair_maintenance.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="jml_custom_repair_maintenance.menu_1" parent="jml_custom_repair_maintenance.menu_root"/>
+    <menuitem name="Menu 2" id="jml_custom_repair_maintenance.menu_2" parent="jml_custom_repair_maintenance.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="jml_custom_repair_maintenance.menu_1_list" parent="jml_custom_repair_maintenance.menu_1"
+              action="jml_custom_repair_maintenance.action_window"/>
+    <menuitem name="Server to list" id="jml_custom_repair_maintenance" parent="jml_custom_repair_maintenance.menu_2"
+              action="jml_custom_repair_maintenance.action_server"/>
+-->
+  </data>
+</odoo>
