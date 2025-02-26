@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <!--        #main menu-->
+        <menuitem
+                id="root_menu_custom_repair_maintenance"
+                name="Repair Maintenance"/>
+        <menuitem
+                id="menu_jml_repair_maintenance"
+                name="Repair"
+                parent="root_menu_custom_repair_maintenance"
+                action="jml_repair_maintenance_views_action"
+                sequence="100"/>
+    </data>
+</odoo>

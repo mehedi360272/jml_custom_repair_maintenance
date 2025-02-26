@@ -1,0 +1,77 @@
+<odoo>
+    <record id="view_repair_maintenance_tree" model="ir.ui.view">
+        <field name="name">jml.repair.maintenance.tree</field>
+        <field name="model">jml.repair.maintenance</field>
+        <field name="arch" type="xml">
+            <tree string="Repair Maintenance">
+                <field name="machine_id"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_repair_maintenance_form" model="ir.ui.view">
+        <field name="name">jml.repair.maintenance.form</field>
+        <field name="model">jml.repair.maintenance</field>
+        <field name="arch" type="xml">
+            <form string="Repair Maintenance">
+                <header>
+                    <!-- Submit button visible only when status is 'draft' -->
+                    <button name="action_submit" string="Submit" class="btn-primary" type="object"
+                            invisible="status != 'draft'"/>
+
+                    <!-- Approve button visible only when status is 'submitted' -->
+                    <button name="action_approve" string="Approve" class="btn-primary" type="object"
+                            invisible="status != 'submitted'"/>
+
+                    <!-- Sent for Repair button visible only when status is 'approved' -->
+                    <button name="action_sent_for_repair" string="Sent for Repair" class="btn-primary" type="object"
+                            invisible="status != 'approved'"/>
+
+                    <!-- Received and Repaired button visible only when status is 'sent_for_repair' -->
+                    <button name="action_received_and_repaired" string="Received and Repaired" class="btn-primary"
+                            type="object"
+                            invisible="status != 'sent_for_repair'"/>
+
+                    <!-- Scrap button visible only when status is 'sent_for_repair' -->
+                    <button name="action_scrap" string="Scrap" class="btn-primary" type="object"
+                            invisible="status != 'sent_for_repair'"/>
+
+                    <field name="status" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="machine_id"/>
+                            <field name="model"/>
+                        </group>
+                        <group>
+                            <field name="service_type"/>
+                            <field name="brand"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Details">
+                            <group>
+                                <group>
+                                    <field name="details"/>
+                                </group>
+                                <group>
+                                    <field name="location_from"/>
+                                    <field name="location_to"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="jml_repair_maintenance_views_action">
+        <field name="name">Repair</field>
+        <field name="res_model">jml.repair.maintenance</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
