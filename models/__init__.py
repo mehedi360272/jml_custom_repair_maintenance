@@ -2,3 +2,4 @@
 
 from . import jml_repair_maintenance
 from . import jml_service_type
+from . import jml_repair_product

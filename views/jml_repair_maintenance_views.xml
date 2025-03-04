@@ -4,7 +4,10 @@
         <field name="model">jml.repair.maintenance</field>
         <field name="arch" type="xml">
             <tree string="Repair Maintenance">
-                <field name="machine_id"/>
+                <field name="name"/>
+                <field name="request_by"/>
+                <field name="repair_date"/>
+                <field name="partner_id"/>
                 <field name="status"/>
             </tree>
         </field>
@@ -24,8 +27,12 @@
                     <button name="action_approve" string="Approve" class="btn-primary" type="object"
                             invisible="status != 'submitted'"/>
 
+                    <!-- Create Bill button visible only when status is 'sent_for_repair' -->
+                    <button name="action_create_bill" type="object" string="Create Bill"
+                            class="btn-primary" invisible="status != 'sent_for_repair'"/>
+
                     <!-- Sent for Repair button visible only when status is 'approved' -->
-                    <button name="action_sent_for_repair" string="Sent for Repair" class="btn-primary" type="object"
+                    <button name="action_sent_for_repair" string="Send for Repair" class="btn-primary" type="object"
                             invisible="status != 'approved'"/>
 
                     <!-- Received and Repaired button visible only when status is 'sent_for_repair' -->
@@ -44,42 +51,71 @@
                         <button class="btn oe_stat_button btn-outline-secondary flex-grow-1 flex-lg-grow-0"
                                 type="object"
                                 name="action_view_picking"
-                                icon="fa-truck">
-                            <field string="Picking" name="internal_transfer_count" widget="statinfo"/>
+                                icon="fa-solid fa-truck">
+                            <field string="Deliveries" name="internal_transfer_count" widget="statinfo"/>
                         </button>
+                        <button name="action_view_received_picking" type="object" class="oe_stat_button"
+                                icon="fa-arrow-down">
+                            <field name="received_transfer_count" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1 class="text-primary">
+                            <field name="name" strign='Indent No' readonly="1"/>
+                        </h1>
+                    </div>
+                    <div class="oe_title">
+                        <label for="problem_name" string="Problem"/>
+                        <h1>
+                            <div class="d-flex">
+                                <field class="text-break" name="problem_name" options="{'line_breaks': False}"
+                                       widget="text" placeholder="Enter the problem..."/>
+                            </div>
+                        </h1>
                     </div>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="machine_id"/>
-                            <field name="model"/>
-                        </group>
-                        <group>
                             <field name="service_type"/>
-                            <field name="brand"/>
                         </group>
                     </group>
                     <group>
                         <group>
                             <field name="request_by"/>
                             <field name="department"/>
+                            <field name="repair_date"/>
+                            <field name="partner_id"/>
+                            <field name="location_from"/>
+                            <field name="location_to"/>
                         </group>
                     </group>
                     <notebook>
+                        <page string="Repair Items">
+                            <field name="repair_item_ids">
+                                <tree create="True" edit="True" delete="True" editable="bottom" class="tree_no_open">
+                                    <field name="product_id"/>
+                                    <field name="uom"/>
+                                    <field name="current_stock"/>
+                                    <field name="quantity"
+                                           string="Quantity"
+                                           on_change="1"/>
+                                    <field name="brand"/>
+                                    <field name="model"/>
+                                    <field name="remarks"/>
+                                </tree>
+                            </field>
+                        </page>
                         <page string="Details">
                             <group>
-                                <group>
-                                    <field name="details"/>
-                                </group>
-                                <group>
-                                    <field name="location_from"/>
-                                    <field name="partner_id"/>
-                                    <field name="location_to"/>
-                                </group>
+                                <field name="details"/>
                             </group>
                         </page>
                     </notebook>
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
             </form>
         </field>
     </record>

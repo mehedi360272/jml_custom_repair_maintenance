@@ -1,0 +1,25 @@
+<odoo>
+    <record id="view_product_template_form_inherit" model="ir.ui.view">
+        <field name="name">product.template.form.inherit.machine.parts</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='options']" position="inside">
+                <span class="d-inline-block">
+                    <field name="is_machine"/>
+                    <label class="o_form_label" for="is_machine">
+                        Is Machine
+                        <sup class="btn-link p-1">?</sup>
+                    </label>
+                </span>
+                <span class="d-inline-block">
+                    <field name="is_parts"/>
+                    <label class="o_form_label" for="is_parts">
+                        Is Parts
+                        <sup class="btn-link p-1">?</sup>
+                    </label>
+                </span>
+            </xpath>
+        </field>
+    </record>
+</odoo>
