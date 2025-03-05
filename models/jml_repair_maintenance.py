@@ -32,6 +32,7 @@ class RepairMaintenance(models.Model):
     location_from = fields.Many2one('stock.location', string='Machine Location')
     partner_id = fields.Many2one('res.partner', string="Vendor")
     location_to = fields.Many2one('stock.location', string='Vendor Location')
+    scrap_location = fields.Many2one('stock.location', string='Scrap Location', readonly=True)
 
     # Second Group
     request_by = fields.Many2one('res.users', string='Request By', default=lambda self: self.env.user, readonly=True)
@@ -142,8 +143,18 @@ class RepairMaintenance(models.Model):
             "target": "current",
         }
 
+    # def action_scrap(self):
+    #     self.write({'status': 'scrap'})
     def action_scrap(self):
-        self.write({'status': 'scrap'})
+        """Open popup wizard for scrap selection."""
+        return {
+            'name': 'Select Scrap Location',
+            'type': 'ir.actions.act_window',
+            'res_model': 'repair.scrap.wizard',
+            'view_mode': 'form',
+            'target': 'new',  # Open as popup
+            'context': {'default_repair_id': self.id},
+        }
 
     def action_create_bill(self):
         """Create a vendor bill when the button is clicked."""
@@ -240,7 +251,6 @@ class RepairMaintenance(models.Model):
             'domain': [('origin', '=', self.name), ('picking_type_id.code', '=', 'incoming')],
             'target': 'current',
         }
-
 
     # sequence number
     @api.model

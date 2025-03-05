@@ -2,4 +2,5 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_jml_repair_maintenance,jml_repair_maintenance,model_jml_repair_maintenance,base.group_user,1,1,1,1
 access_jml_service_type,jml_repair_maintenance,model_jml_service_type,base.group_user,1,1,1,1
 access_jml_repair_item,jml_repair_maintenance,model_jml_repair_item,base.group_user,1,1,1,1
+access_jml_scrap_wizard,jml_repair_maintenance,model_repair_scrap_wizard,base.group_user,1,1,1,1
 

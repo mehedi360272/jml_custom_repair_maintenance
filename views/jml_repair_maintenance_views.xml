@@ -109,6 +109,11 @@
                                 <field name="details"/>
                             </group>
                         </page>
+                        <page string="Others">
+                            <group>
+                                <field name="scrap_location"/>
+                            </group>
+                        </page>
                     </notebook>
                 </sheet>
                 <div class="oe_chatter">
