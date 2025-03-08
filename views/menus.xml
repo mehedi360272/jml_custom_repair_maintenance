@@ -1,4 +1,16 @@
 <odoo>
+    <record id="action_product_template_machine" model="ir.actions.act_window">
+        <field name="name">Machines</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[['is_machine', '=', True]]</field>
+    </record>
+    <record id="action_product_template_parts" model="ir.actions.act_window">
+        <field name="name">Parts</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[['is_parts', '=', True]]</field>
+    </record>
     <data>
         <!--        #main menu-->
         <menuitem
@@ -28,14 +40,14 @@
                         id="menu_machines"
                         name="Machines"
                         parent="menu_jml_machines"
-                        action="stock.product_template_action_product"
+                        action="action_product_template_machine"
                         sequence="110"/>
                 <menuitem
                         id="menu_machine_parts"
                         name="Machine Parts"
                         parent="menu_jml_machines"
-                        action="stock.product_template_action_product"
-                        sequence="110"/>
+                        action="action_product_template_parts"
+                        sequence="120"/>
         <!--        configuration menu-->
         <menuitem
                 id="menu_jml_repair_maintenance_configuration"

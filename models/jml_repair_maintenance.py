@@ -32,6 +32,8 @@ class RepairMaintenance(models.Model):
     location_from = fields.Many2one('stock.location', string='Machine Location')
     partner_id = fields.Many2one('res.partner', string="Vendor")
     location_to = fields.Many2one('stock.location', string='Vendor Location')
+
+
     scrap_location = fields.Many2one('stock.location', string='Scrap Location', readonly=True)
 
     # Second Group

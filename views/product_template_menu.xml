@@ -1,0 +1,28 @@
+<odoo>
+    <record id="action_product_template_machine" model="ir.actions.act_window">
+        <field name="name">Machines and Parts</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[['is_machine', '=', True]]</field>
+    </record>
+
+    <menuitem id="menu_machines"
+              name="Machines"
+              parent="menu_jml_machines"
+              action="action_product_template_machine"
+              sequence="110"/>
+</odoo>
+
+
+<menuitem
+id="menu_jml_machines"
+name="Machines"
+parent="root_menu_custom_repair_maintenance"
+sequence="100"/>
+        <!--        Machine sub menu-->
+<menuitem
+id="menu_machines"
+name="Machines"
+parent="menu_jml_machines"
+action="stock.product_template_action_product"
+sequence="110"/>

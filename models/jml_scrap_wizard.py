@@ -10,7 +10,6 @@ class RepairScrapWizard(models.TransientModel):
     scrap_location_id = fields.Many2one(
         'stock.location',
         string='Scrap Location',
-        domain="[('scrap_location', '=', True)]",  # Filter only scrap locations
         required=True
     )
 

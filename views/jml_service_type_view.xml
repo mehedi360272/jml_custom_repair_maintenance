@@ -4,8 +4,9 @@
             <field name="name">service_type_view_tree</field>
             <field name="model">jml.service.type</field>
             <field name="arch" type="xml">
-                <tree>
+                <tree editable="bottom" multi_edit="1">
                     <field name="name"/>
+                    <field name="service_location"/>
                 </tree>
             </field>
         </record>
@@ -17,9 +18,8 @@
                     <sheet>
                         <group>
                             <field name="name"/>
-                        </group>
-                        <group>
-                            <field name="name"/>
+
+                            <field name="service_location"/>
                         </group>
                     </sheet>
                 </form>
@@ -30,7 +30,7 @@
         <record model="ir.actions.act_window" id="jml_repair_service_type_action">
             <field name="name">Service Type</field>
             <field name="res_model">jml.service.type</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree</field>
         </record>
     </data>
 </odoo>

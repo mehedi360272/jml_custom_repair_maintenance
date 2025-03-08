@@ -6,3 +6,4 @@ class RepairMaintenance(models.Model):
 
 
     name = fields.Char(string='Service Type', required=True)
+    service_location = fields.Many2one('stock.location', string='Service Location', required=True)
