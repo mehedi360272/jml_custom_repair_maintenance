@@ -15,7 +15,7 @@
         <!--        #main menu-->
         <menuitem
                 id="root_menu_custom_repair_maintenance"
-                name="Repair Maintenance"/>
+                name="Repair Management"/>
         <!--        repair menu-->
         <menuitem
                 id="menu_jml_repair_maintenance"

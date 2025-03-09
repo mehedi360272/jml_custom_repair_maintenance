@@ -46,6 +46,8 @@ class RepairMaintenance(models.Model):
 
     repair_item_ids = fields.One2many('jml.repair.item', 'repair_id', string='Repair Items')
 
+    damage_list_ids = fields.One2many('jml.repair.damage.list', 'damage_list_id', string='Damage List')
+
     def action_submit(self):
         self.write({'status': 'submitted'})
 
@@ -145,8 +147,6 @@ class RepairMaintenance(models.Model):
             "target": "current",
         }
 
-    # def action_scrap(self):
-    #     self.write({'status': 'scrap'})
     def action_scrap(self):
         """Open popup wizard for scrap selection."""
         return {
@@ -163,8 +163,8 @@ class RepairMaintenance(models.Model):
         if not self.partner_id:
             raise UserError(_("Please select a vendor before creating a bill."))
 
-        if not self.repair_item_ids:
-            raise UserError(_("No repair items found to create a bill."))
+        if not self.damage_list_ids:
+            raise UserError(_("No damage items found to create a bill."))
 
         bill_vals = {
             "ref": self.name,
@@ -175,7 +175,7 @@ class RepairMaintenance(models.Model):
                     "product_id": item.product_id.id,
                     "quantity": item.quantity,
                     "price_unit": item.product_id.list_price,
-                }) for item in self.repair_item_ids
+                }) for item in self.damage_list_ids
             ],
         }
 

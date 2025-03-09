@@ -8,7 +8,7 @@
                 <field name="request_by"/>
                 <field name="repair_date"/>
                 <field name="partner_id"/>
-                <field name="status"/>
+                <field name="status" decoration-success="status == 'submitted', 'approved'" decoration-danger="status == 'scrap'" widget="badge"/>
             </tree>
         </field>
     </record>
@@ -26,6 +26,7 @@
                     <!-- Approve button visible only when status is 'submitted' -->
                     <button name="action_approve" string="Approve" class="btn-primary" type="object"
                             invisible="status != 'submitted'"/>
+
 
                     <!-- Create Bill button visible only when status is 'sent_for_repair' -->
                     <button name="action_create_bill" type="object" string="Create Bill"
@@ -104,12 +105,22 @@
                                 </tree>
                             </field>
                         </page>
-                        <page string="Details">
+                        <page string="Damage List">
+                            <field name="damage_list_ids">
+                                <tree create="True" edit="True" delete="True" editable="bottom" class="tree_no_open">
+                                    <field name="product_id"/>
+                                    <field name="uom"/>
+                                    <field name="quantity"
+                                           string="Quantity"
+                                           on_change="1"/>
+                                    <field name="remarks"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Others">
                             <group>
                                 <field name="details"/>
                             </group>
-                        </page>
-                        <page string="Others">
                             <group>
                                 <field name="scrap_location"/>
                             </group>

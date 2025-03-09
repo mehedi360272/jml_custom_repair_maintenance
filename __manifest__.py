@@ -22,17 +22,26 @@ Long description of module's purpose
 
     # always loaded
     'data': [
+        # views
         'views/jml_repair_maintenance_views.xml',
         'views/jml_service_type_view.xml',
         'views/jml_repair_product_view.xml',
+        # wizard
         'views/jml_scrap_wizard_view.xml',
+        # data
         'data/sequence.xml',
+        # menu
         'views/menus.xml',
+        # security
         'security/ir.model.access.csv',
     ],
     # only loaded in demonstration mode
     'demo': [
 
     ],
-}
 
+    'license': "LGPL-3",
+    'installable': True,
+    'auto_install': False,
+    'application': True,
+}

@@ -3,4 +3,5 @@ access_jml_repair_maintenance,jml_repair_maintenance,model_jml_repair_maintenanc
 access_jml_service_type,jml_repair_maintenance,model_jml_service_type,base.group_user,1,1,1,1
 access_jml_repair_item,jml_repair_maintenance,model_jml_repair_item,base.group_user,1,1,1,1
 access_jml_scrap_wizard,jml_repair_maintenance,model_repair_scrap_wizard,base.group_user,1,1,1,1
+access_jml_repair_damage_list,jml_repair_maintenance,model_jml_repair_damage_list,base.group_user,1,1,1,1
 
