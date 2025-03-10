@@ -2,7 +2,7 @@
 
 from odoo import models, fields, api, _
 
-class RepairItem(models.Model):
+class RepairDamageList(models.Model):
     _name = 'jml.repair.damage.list'
     _description = 'Create Repair'
 

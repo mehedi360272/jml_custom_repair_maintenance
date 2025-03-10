@@ -28,10 +28,14 @@ class RepairMaintenance(models.Model):
     details = fields.Text(string='Repair Details')
 
     service_type = fields.Many2one('jml.service.type', string='Service Type')
-
     location_from = fields.Many2one('stock.location', string='Machine Location')
     partner_id = fields.Many2one('res.partner', string="Vendor")
     location_to = fields.Many2one('stock.location', string='Vendor Location')
+
+    @api.onchange('service_type')
+    def _onchange_service_type(self):
+        if self.service_type:
+            self.location_to = self.service_type.service_location
 
 
     scrap_location = fields.Many2one('stock.location', string='Scrap Location', readonly=True)

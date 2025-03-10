@@ -1,6 +1,6 @@
 from odoo import models, fields, api
 
-class RepairMaintenance(models.Model):
+class JmlServiceType(models.Model):
     _name = 'jml.service.type'
     _description = 'Service Type'
 
