@@ -8,8 +8,59 @@
                 <field name="request_by"/>
                 <field name="repair_date"/>
                 <field name="partner_id"/>
-                <field name="status" decoration-success="status == 'submitted', 'approved'" decoration-danger="status == 'scrap'" widget="badge"/>
+                <field name="status" decoration-success="status == 'submitted', 'approved'"
+                       decoration-danger="status == 'scrap'" widget="badge"/>
             </tree>
+        </field>
+    </record>
+    <!--    search view-->
+    <record id="view_repair_maintenance_search" model="ir.ui.view">
+        <field name="name">jml.repair.maintenance.search</field>
+        <field name="model">jml.repair.maintenance</field>
+        <field name="arch" type="xml">
+            <search string="Search Repair Maintenance">
+                <field name="name"/>
+                <field name="request_by"/>
+                <field name="repair_date"/>
+                <field name="partner_id"/>
+                <field name="status" select="multi"/>
+                <field name="service_type"/>
+
+                <!-- Filters -->
+                <filter name="filter_draft" string="Draft" domain="[('status', '=', 'draft')]"/>
+                <filter name="filter_submitted" string="Submitted" domain="[('status', '=', 'submitted')]"/>
+                <filter name="filter_approved" string="Approved" domain="[('status', '=', 'approved')]"/>
+                <filter name="filter_sent_for_repair" string="Sent for Repair"
+                        domain="[('status', '=', 'sent_for_repair')]"/>
+                <filter name="filter_received_repaired" string="Received and repaired"
+                        domain="[('status', '=', 'received_and_repaired')]"/>
+                <filter name="filter_scrap" string="Scrap" domain="[('status', '=', 'scrap')]"/>
+
+                <!-- Group by -->
+                <group expand="0" string="Group By">
+                    <filter name="group_by_request_by" string="Requested By" domain="[]"
+                            context="{'group_by': 'request_by'}"/>
+                    <filter name="group_by_status" string="Status" domain="[]" context="{'group_by': 'status'}"/>
+                    <filter name="group_by_repair_date" string="Repair Date" domain="[]"
+                            context="{'group_by': 'repair_date'}"/>
+                    <filter name="group_by_service_type" string="Service Type" domain="[]"
+                            context="{'group_by': 'service_type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+    <!--    calendar view-->
+    <record id="view_repair_maintenance_calendar" model="ir.ui.view">
+        <field name="name">jml.repair.maintenance.calendar</field>
+        <field name="model">jml.repair.maintenance</field>
+        <field name="arch" type="xml">
+            <calendar string="Repair Maintenance Calendar" date_start="repair_date">
+                <field name="name"/>
+                <field name="status"/>
+                <field name="partner_id"/>
+            </calendar>
         </field>
     </record>
 
@@ -139,6 +190,6 @@
     <record model="ir.actions.act_window" id="jml_repair_maintenance_views_action">
         <field name="name">Create Repair</field>
         <field name="res_model">jml.repair.maintenance</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,calendar</field>
     </record>
 </odoo>

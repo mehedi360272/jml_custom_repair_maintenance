@@ -23,7 +23,6 @@ class RepairMaintenance(models.Model):
     repair_date = fields.Date(string='Repair Date', default=fields.Date.today())
     name = fields.Char(strign='Repair No:', required=True, index=True, copy=False, default="NEW")
 
-    # first group
     problem_name = fields.Char(string='Problem', required=True)
     details = fields.Text(string='Repair Details')
 
@@ -32,6 +31,7 @@ class RepairMaintenance(models.Model):
     partner_id = fields.Many2one('res.partner', string="Vendor")
     location_to = fields.Many2one('stock.location', string='Vendor Location')
 
+    # Auto-update Machine Location based on Service Type selection
     @api.onchange('service_type')
     def _onchange_service_type(self):
         if self.service_type:
@@ -40,7 +40,6 @@ class RepairMaintenance(models.Model):
 
     scrap_location = fields.Many2one('stock.location', string='Scrap Location', readonly=True)
 
-    # Second Group
     request_by = fields.Many2one('res.users', string='Request By', default=lambda self: self.env.user, readonly=True)
     department = fields.Char(
         string='Department',
